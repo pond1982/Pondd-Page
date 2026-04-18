@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Suwitcha “Pondd” Sugthana — Digital Product Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- tokens ---------- */
+  :root {
+    --bg:        oklch(0.972 0.008 85);
+    --bg-soft:   oklch(0.955 0.010 85);
+    --ink:       oklch(0.195 0.012 280);
+    --ink-soft:  oklch(0.36 0.010 280);
+    --ink-mute:  oklch(0.55 0.008 280);
+    --rule:      oklch(0.86 0.010 85);
+    --rule-soft: oklch(0.91 0.008 85);
+    --accent:    oklch(0.62 0.14 40);  /* terracotta */
+    --accent-ink:oklch(0.45 0.14 40);
+    --maxw: 1160px;
+    --pad: clamp(20px, 4vw, 56px);
+    --gap-section: clamp(80px, 10vw, 160px);
+    --density: 1;
+    --serif: 'Newsreader', 'Times New Roman', Georgia, serif;
+    --mono:  'JetBrains Mono', ui-monospace, Menlo, monospace;
+  }
+  [data-theme="dark"] {
+    --bg:        oklch(0.16 0.010 280);
+    --bg-soft:   oklch(0.20 0.012 280);
+    --ink:       oklch(0.95 0.008 85);
+    --ink-soft:  oklch(0.78 0.010 85);
+    --ink-mute:  oklch(0.58 0.010 85);
+    --rule:      oklch(0.30 0.012 280);
+    --rule-soft: oklch(0.25 0.012 280);
+    --accent:    oklch(0.72 0.13 45);
+    --accent-ink:oklch(0.82 0.13 45);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* subtle paper grain */
+  body::before {
+    content:"";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: .035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.8 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- layout ---------- */
+  main { position: relative; z-index: 2; }
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky; top: 0;
+    z-index: 10;
+    background: color-mix(in oklab, var(--bg), transparent 15%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 18px; padding-bottom: 18px;
+    gap: 24px;
+  }
+  .brand {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .brand b { color: var(--ink); font-weight: 500; }
+  .brand .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateY(-2px);
+    margin: 0 8px;
+  }
+  nav.topnav { display: flex; gap: 28px; }
+  nav.topnav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    transition: color .2s;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  nav.topnav a:hover { color: var(--ink); }
+  nav.topnav a .num { color: var(--accent); margin-right: 6px; }
+  @media (max-width: 720px) {
+    nav.topnav { display: none; }
+  }
+
+  /* ---------- section scaffolding ---------- */
+  section { padding-top: var(--gap-section); }
+  section:last-of-type { padding-bottom: var(--gap-section); }
+  .sec-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: baseline;
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .sec-label .num { color: var(--accent); margin-right: 10px; }
+  .sec-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin: 0;
+    max-width: 22ch;
+  }
+  .sec-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-ink);
+  }
+  @media (max-width: 720px) {
+    .sec-head { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: clamp(80px, 12vw, 160px); padding-bottom: 0; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 360px);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: start;
+  }
+  .hero-col-main { min-width: 0; }
+  .hero-portrait {
+    position: sticky;
+    top: 96px;
+    display: block;
+    width: 100%;
+    aspect-ratio: 641 / 960;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--bg-soft);
+    box-shadow: 0 40px 80px -40px oklch(0 0 0 / 0.35);
+  }
+  .hero-portrait img {
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: saturate(0.95) contrast(1.02);
+  }
+  .hero-portrait .cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px 12px;
+    background: linear-gradient(to top, oklch(0 0 0 / 0.55), transparent);
+    color: oklch(0.97 0 0);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    display: flex; justify-content: space-between;
+  }
+  .hero-portrait { position: relative; }
+  .hero-portrait .cap b { font-weight: 500; color: oklch(0.97 0 0); }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-portrait { position: static; max-width: 340px; margin: 0 0 32px; }
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    margin-bottom: 48px;
+  }
+  .hero-meta .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .hero-meta .v {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: grid;
+    gap: 4px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 6.2vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0 0 40px;
+    max-width: 12ch;
+  }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .line > span { display: inline-block; will-change: transform; }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-ink);
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .hero-sub .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-top: 6px;
+  }
+  .hero-sub p {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45;
+    max-width: 52ch;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .hero-sub p b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 720px) {
+    .hero-meta, .hero-sub { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  /* big horizontal rule */
+  .hr-big {
+    height: 1px; background: var(--rule);
+    margin: 80px 0 0;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  .about-body .aside {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--ink-mute);
+    line-height: 1.7;
+  }
+  .about-body .aside .row {
+    display: flex; justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .about-body .aside .row b { color: var(--ink); font-weight: 500; }
+  .about-prose {
+    font-family: var(--serif);
+    font-size: clamp(19px, 1.7vw, 24px);
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 58ch;
+  }
+  .about-prose p { margin: 0 0 1em; }
+  .about-prose p:last-child { margin-bottom: 0; }
+  .about-prose .drop {
+    float: left;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 5.4em;
+    line-height: .85;
+    padding: 6px 10px 0 0;
+    color: var(--accent-ink);
+  }
+  @media (max-width: 720px) {
+    .about-body { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ---------- HIGHLIGHTS (strip of numbers) ---------- */
+  #highlights { padding-top: clamp(100px, 12vw, 180px); }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .stat {
+    padding: 36px 24px 30px 0;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+  .stat:last-child { border-right: none; padding-right: 0; }
+  .stat .n {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5.2vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .n .unit {
+    font-size: 0.45em;
+    color: var(--accent-ink);
+    margin-left: 2px;
+    letter-spacing: 0;
+  }
+  .stat .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 14px;
+    display: block;
+    max-width: 22ch;
+  }
+  .stat .idx {
+    position: absolute; top: 14px; right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: .1em;
+  }
+  .stat:last-child .idx { right: 0; }
+  @media (max-width: 880px) {
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .stat:nth-child(2) { border-right: none; padding-right: 0; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .roles { display: grid; }
+  .role {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 48px;
+    align-items: start;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background .2s;
+    position: relative;
+  }
+  .role:last-child { border-bottom: 1px solid var(--rule); }
+  .role:hover { background: var(--bg-soft); }
+  .role:hover .open-ind { color: var(--accent); }
+  .role .years {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--ink-mute);
+    padding-top: 6px;
+    white-space: nowrap;
+  }
+  .role .heads h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .role .heads .co {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-ink);
+  }
+  .role .heads .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 10px;
+  }
+  .role .heads .meta span + span::before {
+    content: "·";
+    margin: 0 10px;
+    color: var(--rule);
+  }
+  .role .open-ind {
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--ink-mute);
+    padding-top: 4px;
+    transition: transform .3s, color .2s;
+  }
+  .role[aria-expanded="true"] .open-ind { transform: rotate(45deg); color: var(--accent); }
+  .role-body {
+    grid-column: 2 / 3;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .4s ease, opacity .3s ease, margin .4s ease;
+  }
+  .role[aria-expanded="true"] .role-body {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 22px;
+  }
+  .role-body .summary {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 0 18px;
+  }
+  .role-body ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    max-width: 62ch;
+  }
+  .role-body li {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-left: 22px;
+    position: relative;
+  }
+  .role-body li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.72em;
+    width: 10px; height: 1px;
+    background: var(--accent);
+  }
+  .role-body li b { font-weight: 500; color: var(--ink); }
+  @media (max-width: 720px) {
+    .role { grid-template-columns: 1fr auto; gap: 16px; }
+    .role .years { grid-column: 1 / 3; padding-top: 0; }
+    .role-body { grid-column: 1 / 3; }
+  }
+
+  /* ---------- CAPABILITIES ---------- */
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .cap {
+    background: var(--bg);
+    padding: 28px 26px 30px;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    min-height: 190px;
+    transition: background .3s;
+  }
+  .cap:hover { background: var(--bg-soft); }
+  .cap .head {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .cap h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .cap .cn {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: .1em;
+  }
+  .cap p {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .cap ul {
+    margin: 0; padding: 0;
+    list-style: none;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .cap ul li {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    padding: 4px 8px;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    border-radius: 2px;
+  }
+  @media (max-width: 880px) {
+    .caps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .caps { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-list { display: grid; }
+  .edu {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 48px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .edu:last-child { border-bottom: 1px solid var(--rule); }
+  .edu .yrs {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: .06em;
+  }
+  .edu .main h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .edu .main .deg {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .edu .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    padding: 4px 8px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+  }
+  @media (max-width: 720px) {
+    .edu { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-head {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(36px, 5.4vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 48px;
+    max-width: 18ch;
+  }
+  .contact-head em {
+    font-style: italic; color: var(--accent-ink); font-weight: 300;
+  }
+  .contact-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .cl {
+    display: flex; align-items: baseline;
+    justify-content: space-between;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: padding .25s;
+    position: relative;
+  }
+  .cl:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--rule); }
+  .cl:nth-child(even) { padding-left: 24px; }
+  .cl:hover { padding-left: 10px; }
+  .cl:nth-child(odd):hover { padding-right: 34px; padding-left: 0; }
+  .cl:nth-child(even):hover { padding-left: 34px; }
+  .cl .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .cl .v {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    transition: color .2s;
+  }
+  .cl:hover .v { color: var(--accent-ink); }
+  .cl .arrow {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translate(6px, -50%);
+    opacity: 0;
+    transition: opacity .2s, transform .2s;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 14px;
+  }
+  .cl:nth-child(odd) .arrow { right: 24px; }
+  .cl:hover .arrow { opacity: 1; transform: translate(0, -50%); }
+  @media (max-width: 680px) {
+    .contact-links { grid-template-columns: 1fr; }
+    .cl:nth-child(odd) { padding-right: 0; border-right: none; }
+    .cl:nth-child(even) { padding-left: 0; }
+    .cl:nth-child(odd) .arrow { right: 0; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: 120px;
+    padding: 32px 0 48px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* hero letter fade */
+  @keyframes riseIn {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .rise { animation: riseIn .9s cubic-bezier(.2,.7,.2,1) both; }
+
+  /* ---------- tweaks panel ---------- */
+  .tweaks {
+    position: fixed;
+    right: 20px; bottom: 20px;
+    z-index: 50;
+    width: 280px;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    padding: 16px 18px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    display: none;
+    box-shadow: 0 30px 60px -30px oklch(0 0 0 / 0.25);
+  }
+  .tweaks.on { display: block; }
+  .tweaks h5 {
+    margin: 0 0 14px;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex; justify-content: space-between;
+  }
+  .tweaks h5 .x {
+    cursor: pointer;
+    color: var(--ink-mute);
+  }
+  .tweaks .grp { margin-bottom: 14px; }
+  .tweaks .grp:last-child { margin-bottom: 0; }
+  .tweaks .lbl {
+    color: var(--ink-mute);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .tweaks .opts { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tweaks .opt {
+    padding: 6px 10px;
+    border: 1px solid var(--rule);
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    letter-spacing: .05em;
+    background: transparent;
+    font-family: var(--mono);
+  }
+  .tweaks .opt.sel {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--bg-soft);
+  }
+  .tweaks .swatches { display: flex; gap: 8px; }
+  .tweaks .sw {
+    width: 24px; height: 24px; border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    transition: transform .15s;
+  }
+  .tweaks .sw:hover { transform: scale(1.08); }
+  .tweaks .sw.sel { border: 2px solid var(--ink); }
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><b>Suwitcha “Pondd” Sugthana</b><span class="dot"></span>Digital Product Leader</div>
+    <nav class="topnav">
+      <a href="#about"><span class="num">01</span>About</a>
+      <a href="#experience"><span class="num">02</span>Experience</a>
+      <a href="#highlights"><span class="num">03</span>Impact</a>
+      <a href="#capabilities"><span class="num">04</span>Capabilities</a>
+      <a href="#contact"><span class="num">05</span>Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-col-main">
+      <div class="hero-meta reveal">
+        <div class="k">Now</div>
+        <div class="v">
+          <div>Head of Digital Channel Operation · TTB Sparks</div>
+          <div>Bangkok, Thailand · open to regional + remote</div>
+        </div>
+      </div>
+
+      <h1>
+        <span class="line"><span class="rise" style="animation-delay:.05s">Twenty years</span></span>
+        <span class="line"><span class="rise" style="animation-delay:.15s">from <em>idea</em> to</span></span>
+        <span class="line"><span class="rise" style="animation-delay:.25s">five-million users.</span></span>
+      </h1>
+
+      <div class="hero-sub reveal">
+        <div class="tag">— Suwitcha “Pondd” Sugthana</div>
+        <p>
+          Digital product leader with <b>20+ years in software</b> across discovery and
+          delivery, and <b>10+ years in financial services</b>. I've built and run products
+          from first sketch to customers at scale — <b>banking apps with millions of
+          daily actives, marketplaces with billions of page views</b>, and regional
+          transformations that reach across countries and time zones.
+        </p>
+      </div>
+        </div><!-- /hero-col-main -->
+
+        <aside class="hero-portrait reveal" aria-label="Portrait of Pondd">
+          <img src="assets/pondd-portrait.jpg" alt="Illustrated portrait of Suwitcha 'Pondd' Sugthana holding his child by the sea">
+          <div class="cap"><b>Pondd · 2025</b><span>Illustration</span></div>
+        </aside>
+      </div><!-- /hero-grid -->
+
+      <div class="hr-big"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">01</span>About</div>
+        <h2 class="sec-title">A product leader who still reads the <em>changelog.</em></h2>
+      </div>
+
+      <div class="about-body reveal">
+        <aside class="aside">
+          <div class="row"><span>Years in software</span><b>20+</b></div>
+          <div class="row"><span>Years in financial services</span><b>10+</b></div>
+          <div class="row"><span>Peak DAU on a product I owned</span><b>5M</b></div>
+          <div class="row"><span>Monthly page views supported</span><b>1.2B</b></div>
+          <div class="row"><span>Method</span><b>Agile · Lean · UCD</b></div>
+          <div class="row"><span>Presidential awards</span><b>1</b></div>
+        </aside>
+        <div class="about-prose">
+          <p><span class="drop">I</span> am a product person who has spent the last two decades on both sides of the work — the <b>discovery</b> that finds the right problem, and the <b>delivery</b> that gets it into customers' hands. The range has mattered: from the TTB Touch bank app serving five million daily actives, to Kaidee supporting 1.2 billion monthly page views, to enterprise transformations across multiple countries and time zones.</p>
+          <p>I lead with design thinking and user experience, whether the room is a startup of ten or an enterprise of tens of thousands. I am passionate about building an <b>Agile culture</b> and transforming teams to align around outcomes — not output, not activity — and I still like being close enough to the craft to read the release notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HIGHLIGHTS ============ -->
+  <section id="highlights">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">02</span>By the numbers</div>
+        <h2 class="sec-title">Scale, measured — <em>and</em> honestly attributed.</h2>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat">
+          <span class="idx">01</span>
+          <span class="n">5<span class="unit">M</span></span>
+          <span class="lbl">Daily active users on TTB Touch</span>
+        </div>
+        <div class="stat">
+          <span class="idx">02</span>
+          <span class="n">1.2<span class="unit">B</span></span>
+          <span class="lbl">Monthly page views supported at Kaidee</span>
+        </div>
+        <div class="stat">
+          <span class="idx">03</span>
+          <span class="n">37<span class="unit">M</span></span>
+          <span class="lbl">Target car drivers for KrungsriAuto</span>
+        </div>
+        <div class="stat">
+          <span class="idx">04</span>
+          <span class="n">20<span class="unit">+ yrs</span></span>
+          <span class="lbl">In software — discovery and delivery, ideas to customers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">03</span>Experience</div>
+        <h2 class="sec-title">Five roles, two industries, one through-line: <em>users first, narrative second, headcount last.</em></h2>
+      </div>
+
+      <div class="roles reveal">
+
+        <!-- role 1 — TTB Sparks -->
+        <article class="role" aria-expanded="true" data-role>
+          <div class="years">2023 — present</div>
+          <div class="heads">
+            <h3>Head of Digital Channel Operation <span class="co">— TTB Sparks</span></h3>
+            <div class="meta"><span>Bangkok</span><span>TTB Touch · 5M DAU</span><span>Financial services</span></div>
+          </div>
+          <div class="open-ind">+</div>
+          <div class="role-body">
+            <p class="summary">Manage the daily operations of the TTB Touch app, serving five million active customers. Own the end-to-end digital customer experience across every touchpoint.</p>
+            <ul>
+              <li><b>Ensure a smooth, seamless experience</b> for 5M active customers by actively monitoring incidents, defects, complaints and feedback across all touchpoints.</li>
+              <li>Built a <b>closed feedback loop</b> with the development team so issues get diagnosed, prioritised and resolved promptly — not buried in a backlog.</li>
+              <li>Run <b>fraud monitoring and active prevention</b> with real-time data analysis, incorporating findings into business rules to continuously raise the security bar.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- role 2 — Liberty Mutual -->
+        <article class="role" data-role>
+          <div class="years">2020 — 2023</div>
+          <div class="heads">
+            <h3>Senior Regional Director, East <span class="co">— Liberty Mutual Insurance</span></h3>
+            <div class="meta"><span>Regional · multi-country</span><span>Senior Product Owner</span><span>Digital Transformation</span></div>
+          </div>
+          <div class="open-ind">+</div>
+          <div class="role-body">
+            <p class="summary">Worked across the entire East region to support Digital Transformation and acted as Senior Product Owner on key strategic initiatives.</p>
+            <ul>
+              <li>Partnered with <b>business leaders and IT teams</b> to define the transformation roadmap and align investment to outcomes.</li>
+              <li>Developed a <b>community of Product Owners</b> across the region, coaching them to own product visions end-to-end.</li>
+              <li>Shifted the operating mindset from <b>outputs to outcomes</b> — changing what "done" meant for teams across multiple countries and time zones.</li>
+              <li>Recognised with a <b>Presidential award</b>, selected from high-performing individuals globally.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- role 3 — Krungsri Bank (Auto) -->
+        <article class="role" data-role>
+          <div class="years">2018 — 2020</div>
+          <div class="heads">
+            <h3>VP — Digital Product Owner <span class="co">— Krungsri Bank (Auto)</span></h3>
+            <div class="meta"><span>Bangkok</span><span>Multi-squads</span><span>Consumer auto finance</span></div>
+          </div>
+          <div class="open-ind">+</div>
+          <div class="role-body">
+            <p class="summary">Worked with the senior management team to lead an organisation-wide product transformation, turning market opportunities into a shipped roadmap across multiple agile squads.</p>
+            <ul>
+              <li>Shipped the <b>KrungsriAuto app</b> targeting Thailand's ~37M car drivers — a consumer front door for auto finance.</li>
+              <li>Launched <b>KrungsriAuto PromptStart</b>, a pre-approved loan experience that shortened the path from interest to decision.</li>
+              <li>Discovered key market opportunities and customer needs, then <b>defined features, roadmap and implementation</b> across a multi-squad environment.</li>
+              <li>Coached squads into an <b>outcome-oriented</b> way of working rather than feature-factory delivery.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- role 4 — Thoughtworks -->
+        <article class="role" data-role>
+          <div class="years">2016 — 2018</div>
+          <div class="heads">
+            <h3>Senior Consultant / Experience Designer <span class="co">— Thoughtworks</span></h3>
+            <div class="meta"><span>Enterprise clients</span><span>Agile · Lean · UCD</span><span>Strategy + delivery</span></div>
+          </div>
+          <div class="open-ind">+</div>
+          <div class="role-body">
+            <p class="summary">Helped large-scale enterprise clients undergo Agile transformation, focused on product discovery and software delivery using Agile practices, user-centred design and Lean.</p>
+            <ul>
+              <li>Combined <b>strategy, portfolio management and product design</b> with digital engineering excellence to ship products customers actually loved.</li>
+              <li>Led the <b>AXA Advisor app</b> — an internal sales tool that redefined sellers' experience in the field.</li>
+              <li>Coached client teams on product discovery, moving them from <b>requirements documents to testable hypotheses</b>.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- role 5 — Kaidee -->
+        <article class="role" data-role>
+          <div class="years">2013 — 2016</div>
+          <div class="heads">
+            <h3>Head of Mobile <span class="co">— Kaidee</span></h3>
+            <div class="meta"><span>Bangkok</span><span>1.2B page views / month</span><span>iOS · Android · React</span></div>
+          </div>
+          <div class="open-ind">+</div>
+          <div class="role-body">
+            <p class="summary">Built and managed the mobile and front-end engineering team at Thailand's largest classifieds marketplace, supporting over 1.2 billion page views every month.</p>
+            <ul>
+              <li>Led <b>iOS, Android and React</b> teams; the Kaidee app grew to <b>5M monthly active users</b>.</li>
+              <li>Worked closely with stakeholders from <b>ideas through execution</b> using Agile methodology and user-centred design.</li>
+              <li>Earlier work spanned the <b>SET Trade app</b> (200k active users) and running the Gucode developer community (11k followers).</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITIES ============ -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">04</span>Capabilities</div>
+        <h2 class="sec-title">What I bring, <em>stated plainly.</em></h2>
+      </div>
+
+      <div class="caps reveal">
+        <div class="cap">
+          <div class="head"><h4>Product Discovery</h4><span class="cn">C—01</span></div>
+          <p>Finding the right problem before anyone writes code. User research, design thinking, hypothesis-led bets.</p>
+          <ul><li>Design thinking</li><li>User research</li><li>Hypothesis framing</li></ul>
+        </div>
+        <div class="cap">
+          <div class="head"><h4>Product Delivery</h4><span class="cn">C—02</span></div>
+          <p>Ideas to customers, repeatedly. Multi-squad environments, measurable outcomes, honest release notes.</p>
+          <ul><li>Roadmapping</li><li>Multi-squad delivery</li><li>Outcome-based goals</li></ul>
+        </div>
+        <div class="cap">
+          <div class="head"><h4>Financial Services</h4><span class="cn">C—03</span></div>
+          <p>10+ years across banking and insurance. Regulated environments, fraud, real-time monitoring, millions of customers.</p>
+          <ul><li>Banking apps</li><li>Insurance</li><li>Fraud prevention</li></ul>
+        </div>
+        <div class="cap">
+          <div class="head"><h4>Agile Transformation</h4><span class="cn">C—04</span></div>
+          <p>Coaching enterprises from output to outcome. Lean, Agile and UCD practised, not just slide-deck’d.</p>
+          <ul><li>Coaching</li><li>Operating rhythm</li><li>Product Owner community</li></ul>
+        </div>
+        <div class="cap">
+          <div class="head"><h4>Experience Design</h4><span class="cn">C—05</span></div>
+          <p>User-centred design in both startup and enterprise contexts. Consumer apps and internal sales tools alike.</p>
+          <ul><li>UX leadership</li><li>UI design</li><li>Mobile</li></ul>
+        </div>
+        <div class="cap">
+          <div class="head"><h4>Leadership</h4><span class="cn">C—06</span></div>
+          <p>Building and running distributed teams across iOS, Android, front-end and product — across countries and time zones.</p>
+          <ul><li>Hiring</li><li>Mentoring</li><li>Cross-border teams</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">05</span>Education</div>
+        <h2 class="sec-title">Where the thinking was <em>sharpened.</em></h2>
+      </div>
+
+      <div class="edu-list reveal">
+        <div class="edu">
+          <div class="yrs">2008</div>
+          <div class="main">
+            <h4>Mahidol University International College</h4>
+            <div class="deg">BSc · Computer Science</div>
+          </div>
+          <span class="tag">Bangkok</span>
+        </div>
+        <div class="edu">
+          <div class="yrs">7 years</div>
+          <div class="main">
+            <h4>Christ Church Grammar School</h4>
+            <div class="deg">High school · Western Australia</div>
+          </div>
+          <span class="tag">Perth, AU</span>
+        </div>
+        <div class="edu">
+          <div class="yrs">Ongoing</div>
+          <div class="main">
+            <h4>Public Speaking</h4>
+            <div class="deg">Thailand and international stages</div>
+          </div>
+          <span class="tag">Speaker</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label"><span class="num">06</span>Contact</div>
+        <h2 class="sec-title">Currently listening for the <em>next honest problem.</em></h2>
+      </div>
+
+      <div class="reveal">
+        <p class="contact-head">Write first. I read every <em>thoughtful</em> note.</p>
+
+        <div class="contact-links">
+          <a class="cl" href="mailto:pondd.me@gmail.com">
+            <span class="k">Email</span>
+            <span class="v">pondd.me@gmail.com</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="cl" href="tel:+66909741861">
+            <span class="k">Phone</span>
+            <span class="v">09-0974-1861</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="cl" href="#" onclick="return false">
+            <span class="k">Based in</span>
+            <span class="v">Bangkok, Thailand</span>
+            <span class="arrow">↗</span>
+          </a>
+          <a class="cl" href="#" onclick="return false">
+            <span class="k">Speaking</span>
+            <span class="v">on request</span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <footer>
+        <span>© 2026 Suwitcha Sugthana</span>
+        <span>Set in Newsreader &amp; JetBrains Mono · Bangkok</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<!-- Tweaks panel -->
+<div class="tweaks" id="tweaks" role="dialog" aria-label="Tweaks">
+  <h5>Tweaks <span class="x" id="tweaks-close">close</span></h5>
+
+  <div class="grp">
+    <div class="lbl">Theme</div>
+    <div class="opts" data-group="theme">
+      <button class="opt" data-val="light">Light</button>
+      <button class="opt" data-val="dark">Dark</button>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="lbl">Accent</div>
+    <div class="swatches" data-group="accent">
+      <div class="sw" data-val="terracotta" style="background: oklch(0.62 0.14 40)" title="Terracotta"></div>
+      <div class="sw" data-val="ink"        style="background: oklch(0.35 0.02 280)" title="Ink"></div>
+      <div class="sw" data-val="olive"      style="background: oklch(0.55 0.10 120)" title="Olive"></div>
+      <div class="sw" data-val="cobalt"     style="background: oklch(0.45 0.15 260)" title="Cobalt"></div>
+      <div class="sw" data-val="crimson"    style="background: oklch(0.50 0.17 25)"  title="Crimson"></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="lbl">Density</div>
+    <div class="opts" data-group="density">
+      <button class="opt" data-val="airy">Airy</button>
+      <button class="opt" data-val="regular">Regular</button>
+      <button class="opt" data-val="compact">Compact</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ----- EDITMODE defaults ----- */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "theme": "dark",
+    "accent": "terracotta",
+    "density": "airy"
+  }/*EDITMODE-END*/;
+
+  const ACCENTS = {
+    terracotta: { a: "oklch(0.62 0.14 40)",  ai: "oklch(0.45 0.14 40)",  aDark: "oklch(0.72 0.13 45)",  aiDark: "oklch(0.82 0.13 45)" },
+    ink:        { a: "oklch(0.35 0.02 280)", ai: "oklch(0.22 0.02 280)", aDark: "oklch(0.80 0.01 85)",  aiDark: "oklch(0.92 0.01 85)" },
+    olive:      { a: "oklch(0.55 0.10 120)", ai: "oklch(0.42 0.10 120)", aDark: "oklch(0.75 0.09 120)", aiDark: "oklch(0.85 0.09 120)" },
+    cobalt:     { a: "oklch(0.45 0.15 260)", ai: "oklch(0.35 0.15 260)", aDark: "oklch(0.72 0.13 260)", aiDark: "oklch(0.82 0.13 260)" },
+    crimson:    { a: "oklch(0.50 0.17 25)",  ai: "oklch(0.40 0.17 25)",  aDark: "oklch(0.70 0.15 25)",  aiDark: "oklch(0.82 0.14 25)" },
+  };
+
+  const DENSITY = {
+    airy:    { pad: "clamp(28px, 5vw, 72px)", sec: "clamp(120px, 14vw, 200px)" },
+    regular: { pad: "clamp(20px, 4vw, 56px)", sec: "clamp(80px, 10vw, 160px)"  },
+    compact: { pad: "clamp(16px, 3vw, 40px)", sec: "clamp(56px, 7vw, 100px)"   },
+  };
+
+  function applyTweaks(t) {
+    const root = document.documentElement;
+    root.setAttribute("data-theme", t.theme);
+
+    const acc = ACCENTS[t.accent] || ACCENTS.terracotta;
+    if (t.theme === "dark") {
+      root.style.setProperty("--accent", acc.aDark);
+      root.style.setProperty("--accent-ink", acc.aiDark);
+    } else {
+      root.style.setProperty("--accent", acc.a);
+      root.style.setProperty("--accent-ink", acc.ai);
+    }
+
+    const d = DENSITY[t.density] || DENSITY.regular;
+    root.style.setProperty("--pad", d.pad);
+    root.style.setProperty("--gap-section", d.sec);
+
+    // reflect selected state
+    document.querySelectorAll("[data-group]").forEach(grp => {
+      const g = grp.getAttribute("data-group");
+      grp.querySelectorAll("[data-val]").forEach(b => {
+        b.classList.toggle("sel", b.getAttribute("data-val") === t[g]);
+      });
+    });
+  }
+
+  const state = { ...TWEAK_DEFAULTS };
+  applyTweaks(state);
+
+  /* wire tweak controls */
+  document.querySelectorAll("[data-group]").forEach(grp => {
+    const g = grp.getAttribute("data-group");
+    grp.querySelectorAll("[data-val]").forEach(b => {
+      b.addEventListener("click", () => {
+        state[g] = b.getAttribute("data-val");
+        applyTweaks(state);
+        try {
+          window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [g]: state[g] } }, "*");
+        } catch(e){}
+      });
+    });
+  });
+
+  /* edit-mode protocol */
+  const tweaksEl = document.getElementById("tweaks");
+  const closeEl  = document.getElementById("tweaks-close");
+  closeEl.addEventListener("click", () => tweaksEl.classList.remove("on"));
+  window.addEventListener("message", (e) => {
+    const m = e.data || {};
+    if (m.type === "__activate_edit_mode")   tweaksEl.classList.add("on");
+    if (m.type === "__deactivate_edit_mode") tweaksEl.classList.remove("on");
+  });
+  try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch(e){}
+
+  /* role expand/collapse */
+  document.querySelectorAll("[data-role]").forEach(r => {
+    r.addEventListener("click", (e) => {
+      // don't toggle when clicking a link inside role body
+      if (e.target.closest("a")) return;
+      const open = r.getAttribute("aria-expanded") === "true";
+      r.setAttribute("aria-expanded", String(!open));
+    });
+  });
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add("in");
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  /* also reveal hero immediately */
+  document.querySelectorAll(".hero .reveal").forEach(el => el.classList.add("in"));
+</script>
+
+</body>
+</html>
