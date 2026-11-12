@@ -810,7 +810,7 @@
         </aside>
       </div><!-- /hero-grid -->
 
-      <a class="app-shortcut" href="#apps">Explore my apps <span>21 released on the App Store <span aria-hidden="true">↘</span></span></a>
+      <a class="app-shortcut" href="#apps">Explore my apps &amp; tools <span>21 App Store apps + 1 web tool <span aria-hidden="true">↘</span></span></a>
 
       <div class="hr-big"></div>
     </div>
@@ -1064,23 +1064,39 @@
   <section id="apps" aria-labelledby="apps-title">
     <div class="wrap">
       <div class="sec-head">
-        <div class="sec-label">Independent apps</div>
+        <div class="sec-label">Independent apps &amp; tools</div>
         <h2 class="sec-title" id="apps-title">Made with curiosity. <em>Released into the world.</em></h2>
       </div>
-      <p class="app-intro">Games, useful tools and small ways to learn. Explore my 21 released apps, with a website and App Store link for each.</p>
+      <p class="app-intro">Games, useful tools and small ways to learn. Explore my 21 released App Store apps and browser-based creative tools.</p>
       <div class="app-controls" hidden>
         <div class="app-search">
-          <label for="app-search">Find an app</label>
+          <label for="app-search">Find an app or tool</label>
           <input type="search" id="app-search" placeholder="Name, category or interest" aria-controls="app-list" autocomplete="off">
         </div>
-        <div class="app-filters" role="group" aria-label="Filter apps">
-          <button type="button" class="app-filter" data-filter="all" aria-pressed="true" aria-controls="app-list">All apps</button>
+        <div class="app-filters" role="group" aria-label="Filter apps and tools">
+          <button type="button" class="app-filter" data-filter="all" aria-pressed="true" aria-controls="app-list">All projects</button>
           <button type="button" class="app-filter" data-filter="games" aria-pressed="false" aria-controls="app-list">Games</button>
           <button type="button" class="app-filter" data-filter="apps" aria-pressed="false" aria-controls="app-list">Tools &amp; learning</button>
+          <button type="button" class="app-filter" data-filter="web" aria-pressed="false" aria-controls="app-list">Web tools</button>
         </div>
       </div>
-      <p class="app-count" id="app-count" role="status" aria-live="polite" aria-atomic="true">21 released apps</p>
+      <p class="app-count" id="app-count" role="status" aria-live="polite" aria-atomic="true" data-summary="21 App Store apps · 1 web tool">21 App Store apps · 1 web tool</p>
       <ul class="app-grid" id="app-list" role="list">
+        <li class="app-card" data-group="web" data-search="Screenshot Studio screenshot maker generator app store google play iPhone iPad Android browser design mockup Free web tool · Design Import your screenshots, add device frames and headlines, then export App Store and Google Play images. Free, with no sign-up; your screenshots stay on your device.">
+          <article aria-labelledby="app-screenshot-studio">
+            <div class="app-card-header">
+              <img class="app-icon" src="assets/app-icons/screenshot-studio.svg" alt="" width="56" height="56" loading="lazy" decoding="async">
+              <div>
+                <h3 id="app-screenshot-studio">Screenshot Studio</h3>
+                <p class="app-meta">Free web tool · Design</p>
+              </div>
+            </div>
+            <p class="app-summary">Import your screenshots, add device frames and headlines, then export App Store and Google Play images. Free, with no sign-up; your screenshots stay on your device.</p>
+            <div class="app-links">
+              <a href="https://pond1982.github.io/screenshot-studio/" aria-label="Open Screenshot Studio web tool">Open web tool <span aria-hidden="true">&nbsp;↗</span></a>
+            </div>
+          </article>
+        </li>
         <li class="app-card" data-group="apps" data-search="21Counts  Education Practice blackjack card counting with short lessons, drills and Bandit the raccoon.">
           <article aria-labelledby="app-6763789288">
             <div class="app-card-header">
@@ -1419,10 +1435,10 @@
         </li>
       </ul>
       <div class="app-empty" hidden>
-        <p>No apps match this search. Try another name or show the full collection.</p>
-        <button type="button" class="app-clear">Show all apps</button>
+        <p>No apps or tools match this search. Try another name or show the full collection.</p>
+        <button type="button" class="app-clear">Show all projects</button>
       </div>
-      <p class="app-source">App Store listings and website links checked 2026-11-12. Availability may vary by region.</p>
+      <p class="app-source">App Store listings, web tools and website links checked 2026-11-12. Availability may vary by region.</p>
     </div>
   </section>
   <!-- APP DIRECTORY END -->

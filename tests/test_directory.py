@@ -34,6 +34,19 @@ class DirectoryTests(unittest.TestCase):
         # These apps keep the verified Cloudflare destinations and current hosting.
         self.assertEqual(len([a for a in apps if urlparse(a['websiteUrl']).hostname.endswith('.pages.dev')]), 5)
 
+    def test_web_tool_inventory(self):
+        tools = DATA['webTools']
+        self.assertEqual(len(tools), 1)
+        tool = tools[0]
+        self.assertEqual(tool['name'], 'Screenshot Studio')
+        self.assertEqual(tool['websiteUrl'], 'https://pond1982.github.io/screenshot-studio/')
+        self.assertNotIn('appStoreId', tool)
+        self.assertNotIn('appStoreUrl', tool)
+        self.assertEqual(tool['group'], 'web')
+        self.assertTrue((ROOT / tool['icon']).is_file())
+        self.assertIn(tool['websiteUrl'], HTML)
+        self.assertIn('21 App Store apps · 1 web tool', HTML)
+
     def test_generated_section_is_current(self):
         spec = importlib.util.spec_from_file_location('builder', ROOT / 'scripts/build-app-directory.py')
         module = importlib.util.module_from_spec(spec)
@@ -65,7 +78,7 @@ class DirectoryTests(unittest.TestCase):
         restored = re.sub(r'  <!-- APP DIRECTORY START:.*?<!-- APP DIRECTORY END -->\n\n', '', HTML, flags=re.S)
         restored = restored.replace('<link rel="stylesheet" href="assets/app-directory.css">\n<script src="assets/app-directory.js" defer></script>\n', '')
         restored = restored.replace('      <a href="#apps">Apps</a>\n', '')
-        restored = restored.replace('      <a class="app-shortcut" href="#apps">Explore my apps <span>21 released on the App Store <span aria-hidden="true">↘</span></span></a>\n\n', '')
+        restored = restored.replace('      <a class="app-shortcut" href="#apps">Explore my apps &amp; tools <span>21 App Store apps + 1 web tool <span aria-hidden="true">↘</span></span></a>\n\n', '')
         # SHA-256 of index.html from initial commit 8d4ab07. All original wording,
         # styles, markup, anchors and behavior must remain byte-for-byte intact.
         self.assertEqual(hashlib.sha256(restored.encode()).hexdigest(), '3e1321f08f89721b0d30a7f25cfe3f9a93fd6194f322109484719f2b9ef560ba')

@@ -10,12 +10,18 @@ END = '  <!-- APP DIRECTORY END -->'
 
 def render(data):
     apps = data['apps']
+    web_tools = data.get('webTools', [])
+    summary = f"{len(apps)} App Store apps · {len(web_tools)} web tool{'s' if len(web_tools) != 1 else ''}"
     cards = []
-    for app in apps:
+    for app in [*web_tools, *apps]:
         name = escape(app['name'])
-        app_id = app['appStoreId']
+        app_id = app.get('appStoreId', app.get('id'))
+        is_web_tool = 'appStoreId' not in app
         search = escape(' '.join([app['name'], app['aliases'], app['genre'], app['summary']]), quote=True)
         language = ' lang="th"' if app['aliases'].startswith('ReadSlip') else ''
+        website_label = 'Open web tool' if is_web_tool else 'Website'
+        website_name = f"Open {app['name']} web tool" if is_web_tool else f"{app['name']} website"
+        store_link = '' if is_web_tool else f'''\n              <a href="{escape(app['appStoreUrl'])}" aria-label="{name} on the App Store">App Store <span aria-hidden="true">&nbsp;↗</span></a>'''
         cards.append(f'''        <li class="app-card" data-group="{app['group']}" data-search="{search}">
           <article aria-labelledby="app-{app_id}">
             <div class="app-card-header">
@@ -27,8 +33,7 @@ def render(data):
             </div>
             <p class="app-summary">{escape(app['summary'])}</p>
             <div class="app-links">
-              <a href="{escape(app['websiteUrl'])}" aria-label="{name} website">Website <span aria-hidden="true">&nbsp;↗</span></a>
-              <a href="{escape(app['appStoreUrl'])}" aria-label="{name} on the App Store">App Store <span aria-hidden="true">&nbsp;↗</span></a>
+              <a href="{escape(app['websiteUrl'])}" aria-label="{escape(website_name)}">{website_label} <span aria-hidden="true">&nbsp;↗</span></a>{store_link}
             </div>
           </article>
         </li>''')
@@ -36,30 +41,31 @@ def render(data):
   <section id="apps" aria-labelledby="apps-title">
     <div class="wrap">
       <div class="sec-head">
-        <div class="sec-label">Independent apps</div>
+        <div class="sec-label">Independent apps &amp; tools</div>
         <h2 class="sec-title" id="apps-title">Made with curiosity. <em>Released into the world.</em></h2>
       </div>
-      <p class="app-intro">Games, useful tools and small ways to learn. Explore my {len(apps)} released apps, with a website and App Store link for each.</p>
+      <p class="app-intro">Games, useful tools and small ways to learn. Explore my {len(apps)} released App Store apps and browser-based creative tools.</p>
       <div class="app-controls" hidden>
         <div class="app-search">
-          <label for="app-search">Find an app</label>
+          <label for="app-search">Find an app or tool</label>
           <input type="search" id="app-search" placeholder="Name, category or interest" aria-controls="app-list" autocomplete="off">
         </div>
-        <div class="app-filters" role="group" aria-label="Filter apps">
-          <button type="button" class="app-filter" data-filter="all" aria-pressed="true" aria-controls="app-list">All apps</button>
+        <div class="app-filters" role="group" aria-label="Filter apps and tools">
+          <button type="button" class="app-filter" data-filter="all" aria-pressed="true" aria-controls="app-list">All projects</button>
           <button type="button" class="app-filter" data-filter="games" aria-pressed="false" aria-controls="app-list">Games</button>
           <button type="button" class="app-filter" data-filter="apps" aria-pressed="false" aria-controls="app-list">Tools &amp; learning</button>
+          <button type="button" class="app-filter" data-filter="web" aria-pressed="false" aria-controls="app-list">Web tools</button>
         </div>
       </div>
-      <p class="app-count" id="app-count" role="status" aria-live="polite" aria-atomic="true">{len(apps)} released apps</p>
+      <p class="app-count" id="app-count" role="status" aria-live="polite" aria-atomic="true" data-summary="{escape(summary, quote=True)}">{summary}</p>
       <ul class="app-grid" id="app-list" role="list">
 {chr(10).join(cards)}
       </ul>
       <div class="app-empty" hidden>
-        <p>No apps match this search. Try another name or show the full collection.</p>
-        <button type="button" class="app-clear">Show all apps</button>
+        <p>No apps or tools match this search. Try another name or show the full collection.</p>
+        <button type="button" class="app-clear">Show all projects</button>
       </div>
-      <p class="app-source">App Store listings and website links checked {escape(data['verifiedDate'])}. Availability may vary by region.</p>
+      <p class="app-source">App Store listings, web tools and website links checked {escape(data['verifiedDate'])}. Availability may vary by region.</p>
     </div>
   </section>
 {END}'''

@@ -1,27 +1,32 @@
 # Pondd's personal portfolio
 
-A static personal CV, with a directory of released apps. The original CV's copy,
+A static personal CV, with a directory of released apps and web tools. The original CV's copy,
 serif/terracotta theme, portrait, sections, anchors and editing controls are retained.
 
 ## App directory
 
-- The 21 listings come from the UK App Store developer lookup linked in
+- The 21 App Store listings come from the UK App Store developer lookup linked in
   `data/apps.json`, checked on 12 November 2026.
-- Each listing keeps the exact App Store URL and its verified website URL.
+- Screenshot Studio is a separate, free web tool at
+  `https://pond1982.github.io/screenshot-studio/`, verified on 12 November 2026.
+  Its card opens the browser tool and does not imply an App Store release.
+  Its local SVG icon is copied from the tool's existing favicon.
+- Each App Store listing keeps the exact App Store URL and its verified website URL.
 - Five website links point to existing Cloudflare Pages sites. Linking them here
   does not change their hosting or their contents.
 - App icons are local, optimized copies of the app's App Store artwork. No
   third-party request is needed to render them.
 - `apps.html` redirects to `index.html#apps` and provides a fallback link, so
   app-site footers can link to either directory address.
-- All cards and links are static HTML. Search and the two category filters are
+- All cards and links are static HTML. Search and the three category filters are
   optional JavaScript enhancements. Games uses the App Store's Games category;
-  the other apps appear under Tools & learning.
+  the other apps appear under Tools & learning, and Screenshot Studio appears
+  under Web tools. The full count remains 21 App Store apps plus 1 web tool.
 - Search includes English and Thai names. The ReadSlip English alias is indexed
   alongside its official Thai App Store name.
 
 To maintain the directory, verify the relevant live listings, edit
-`data/apps.json`, then run `python3 scripts/build-app-directory.py`. The build
+`data/apps.json` (`apps` for App Store releases, `webTools` for browser tools), then run `python3 scripts/build-app-directory.py`. The build
 only replaces the marked directory block. Add optimized icons under
 `assets/app-icons/` if an app is added. Update the hero shortcut count if the
 number of apps changes.
@@ -70,3 +75,17 @@ unchanged legacy CV.
 
 Deployment uses the existing GitHub Pages site. Changes in this repository
 do not alter the app-site repositories or their hosting.
+
+## Screenshot Studio addition
+
+- Screenshot Studio's live canonical URL returned HTTP 200 and its page confirms
+  local screenshot import, templates and App Store/Google Play export.
+- All 21 existing app metadata records and links are unchanged.
+- Six static tests and seven DOM tests pass, including web-tool search/filter,
+  repeated filtering, empty-result recovery and the original CV preservation test.
+- `npm run test:browser` could not start because its Playwright Chromium binary
+  is not installed. This is not an automated browser or axe pass.
+- Supported cloud-browser preview checks passed at 320, 390 and 1365px CSS frame
+  widths: 22 cards, loaded Screenshot Studio icon and no directory overflow.
+  Desktop and 320px layouts were visually inspected. Search, Web tools filtering,
+  zero-result state and restoring all 22 projects were checked interactively.

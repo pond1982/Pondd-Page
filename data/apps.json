@@ -254,5 +254,19 @@
       "icon": "assets/app-icons/6777710816.webp",
       "iconSource": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/cc/e0/34/cce0349a-b09e-8f9c-2556-fc660f1da4d8/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg"
     }
+  ],
+  "webTools": [
+    {
+      "id": "screenshot-studio",
+      "name": "Screenshot Studio",
+      "websiteUrl": "https://pond1982.github.io/screenshot-studio/",
+      "genre": "Free web tool · Design",
+      "group": "web",
+      "summary": "Import your screenshots, add device frames and headlines, then export App Store and Google Play images. Free, with no sign-up; your screenshots stay on your device.",
+      "aliases": "screenshot maker generator app store google play iPhone iPad Android browser design mockup",
+      "icon": "assets/app-icons/screenshot-studio.svg",
+      "iconSource": "https://pond1982.github.io/screenshot-studio/",
+      "source": "https://github.com/pond1982/screenshot-studio/blob/main/README.md"
+    }
   ]
 }

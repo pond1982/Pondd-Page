@@ -1,4 +1,4 @@
-/* Progressive enhancement: every app and both links work without JavaScript. */
+/* Progressive enhancement: every app, web tool and link work without JavaScript. */
 (() => {
   const directory = document.querySelector('#apps');
   if (!directory) return;
@@ -21,8 +21,8 @@
       if (matches) visible += 1;
     });
     count.textContent = visible === cards.length
-      ? `${cards.length} released apps`
-      : `${visible} of ${cards.length} apps`;
+      ? count.dataset.summary
+      : `${visible} of ${cards.length} projects`;
     empty.hidden = visible !== 0;
     filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === group)));
   }
