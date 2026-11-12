@@ -41,6 +41,12 @@ class DirectoryTests(unittest.TestCase):
         generated = module.render(DATA)
         self.assertIn(generated, HTML)
 
+    def test_apps_compatibility_address(self):
+        redirect = (ROOT / "apps.html").read_text()
+        self.assertIn('content="0; url=index.html#apps"', redirect)
+        self.assertIn('href="index.html#apps"', redirect)
+        self.assertIn('id="apps"', HTML)
+
     def test_ids_anchors_and_local_paths(self):
         elements = Elements(HTML).tags
         ids = [attrs['id'] for _, attrs in elements if 'id' in attrs]
