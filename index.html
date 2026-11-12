@@ -754,6 +754,11 @@
 </style>
 <link rel="stylesheet" href="assets/app-directory.css">
 <script src="assets/app-directory.js" defer></script>
+
+<!-- Pondd's About-section Easter egg -->
+<link rel="stylesheet" href="pondd-character/character.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="pondd-character/init.js"></script>
 </head>
 <body>
 
@@ -839,7 +844,11 @@
         </div>
       </div>
     </div>
-  </section>
+  
+<!-- Pondd character start -->
+<div class="pondd-about" data-pondd-character><div class="pondd-about-inner"><div><h2>Meet mini Pondd</h2><p>A little Easter egg from the person behind the apps.</p><p><a href="#apps">Explore my apps</a></p></div><div><button class="pondd-character-stage" type="button" aria-label="Change Pondd’s dance" aria-describedby="pondd-character-hint"><span class="pondd-character-fallback" aria-hidden="true">👋<br>Pondd</span><span class="bubble" role="status" aria-live="polite">Hi! I’m Pondd. Thanks for stopping by 👋</span></button><p class="pondd-character-hint" id="pondd-character-hint">Tap the character or press Enter to change the dance.</p><button class="pondd-character-pause" type="button" aria-pressed="false" hidden>Pause dancing</button><noscript><p>The 3D Easter egg needs JavaScript. You can still explore the rest of the site.</p></noscript></div></div><script type="application/json" class="pondd-character-lines">["Hi! I’m Pondd. Thanks for stopping by 👋", "Tap me to change the dance!", "ขอบคุณที่แวะมาครับ 🙏", "Building useful things. Taking dance breaks.", "Like it? Explore my other apps ♥", "One more spin!"]</script></div>
+<!-- Pondd character end -->
+</section>
 
   <!-- ============ HIGHLIGHTS ============ -->
   <section id="highlights">
