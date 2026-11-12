@@ -1,0 +1,14 @@
+{
+  "name": "pondd-page",
+  "private": true,
+  "scripts": {
+    "build:directory": "python3 scripts/build-app-directory.py",
+    "test": "python3 -m unittest discover -s tests && node --test tests/*.test.cjs",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.3",
+    "jsdom": "26.1.0",
+    "playwright": "1.56.1"
+  }
+}
