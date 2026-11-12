@@ -35,9 +35,10 @@ for (const section of document.querySelectorAll('[data-pondd-character]')) {
       host.removeAttribute('aria-busy'); host.classList.add('unavailable');
       host.setAttribute('aria-label', labels.greet);
       hint.textContent = labels.fallback;
+      const greetings = lines.filter(line => !/change the dance|one more spin|เปลี่ยนท่าเต้น|หมุนอีกรอบ/i.test(line));
       let taps = 0;
-      host.querySelector('.bubble').textContent = lines[0];
-      host.addEventListener('click', () => { host.querySelector('.bubble').textContent = lines[++taps % lines.length]; });
+      host.querySelector('.bubble').textContent = greetings[0] || lines[0];
+      host.addEventListener('click', () => { host.querySelector('.bubble').textContent = greetings[++taps % greetings.length] || lines[0]; });
       console.info('Pondd character fallback:', error.message);
     });
     return pending;
