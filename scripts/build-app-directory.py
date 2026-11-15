@@ -11,7 +11,7 @@ END = '  <!-- APP DIRECTORY END -->'
 def render(data):
     apps = data['apps']
     web_tools = data.get('webTools', [])
-    summary = f"{len(apps)} App Store apps · {len(web_tools)} web tool{'s' if len(web_tools) != 1 else ''}"
+    summary = f"{len(apps)} App Store apps · {len(web_tools)} websites & tools"
     cards = []
     for app in [*web_tools, *apps]:
         name = escape(app['name'])
@@ -19,8 +19,8 @@ def render(data):
         is_web_tool = 'appStoreId' not in app
         search = escape(' '.join([app['name'], app['aliases'], app['genre'], app['summary']]), quote=True)
         language = ' lang="th"' if app['aliases'].startswith('ReadSlip') else ''
-        website_label = 'Open web tool' if is_web_tool else 'Website'
-        website_name = f"Open {app['name']} web tool" if is_web_tool else f"{app['name']} website"
+        website_label = app.get('linkLabel', 'Open web tool' if is_web_tool else 'Website')
+        website_name = f"{app['name']} website" if app.get('linkLabel') else (f"Open {app['name']} web tool" if is_web_tool else f"{app['name']} website")
         store_link = '' if is_web_tool else f'''\n              <a href="{escape(app['appStoreUrl'])}" aria-label="{name} on the App Store">App Store <span aria-hidden="true">&nbsp;↗</span></a>'''
         cards.append(f'''        <li class="app-card" data-group="{app['group']}" data-search="{search}">
           <article aria-labelledby="app-{app_id}">
@@ -44,7 +44,7 @@ def render(data):
         <div class="sec-label">Independent apps &amp; tools</div>
         <h2 class="sec-title" id="apps-title">Made with curiosity. <em>Released into the world.</em></h2>
       </div>
-      <p class="app-intro">Games, useful tools and small ways to learn. Explore my {len(apps)} released App Store apps and browser-based creative tools.</p>
+      <p class="app-intro">Games, useful tools and small ways to learn. Explore my {len(apps)} released App Store apps and websites, creative tools and free guides.</p>
       <div class="app-controls" hidden>
         <div class="app-search">
           <label for="app-search">Find an app or tool</label>
@@ -54,7 +54,7 @@ def render(data):
           <button type="button" class="app-filter" data-filter="all" aria-pressed="true" aria-controls="app-list">All projects</button>
           <button type="button" class="app-filter" data-filter="games" aria-pressed="false" aria-controls="app-list">Games</button>
           <button type="button" class="app-filter" data-filter="apps" aria-pressed="false" aria-controls="app-list">Tools &amp; learning</button>
-          <button type="button" class="app-filter" data-filter="web" aria-pressed="false" aria-controls="app-list">Web tools</button>
+          <button type="button" class="app-filter" data-filter="web" aria-pressed="false" aria-controls="app-list">Websites &amp; tools</button>
         </div>
       </div>
       <p class="app-count" id="app-count" role="status" aria-live="polite" aria-atomic="true" data-summary="{escape(summary, quote=True)}">{summary}</p>

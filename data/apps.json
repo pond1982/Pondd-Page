@@ -267,6 +267,18 @@
       "icon": "assets/app-icons/screenshot-studio.svg",
       "iconSource": "https://pond1982.github.io/screenshot-studio/",
       "source": "https://github.com/pond1982/screenshot-studio/blob/main/README.md"
+    },
+    {
+      "id": "pet-28-days",
+      "name": "Pet 28 Days · ข้าวตัง & ส้มโอ",
+      "websiteUrl": "https://pond1982.github.io/pet-28-days/",
+      "genre": "Free guides · Pet care",
+      "group": "web",
+      "summary": "Free Thai 28-day puppy and kitten training guides, with printable PDFs and a daily plan for new pet owners.",
+      "aliases": "dog cat puppy kitten pet training หมา แมว ข้าวตัง ส้มโอ",
+      "icon": "assets/app-icons/pet-28-days.png",
+      "iconSource": "https://pond1982.github.io/pet-28-days/favicon.png",
+      "linkLabel": "Open website"
     }
   ]
 }

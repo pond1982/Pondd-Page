@@ -18,23 +18,23 @@ function search(s, value) {
   s.search.dispatchEvent(new s.dom.window.Event('input', { bubbles: true }));
 }
 
-test('without JavaScript all 21 apps, 1 web tool and their 43 links are available', () => {
+test('without JavaScript all 21 apps, 2 web tools and their 44 links are available', () => {
   const s = setup(false);
-  assert.equal(s.visible().length, 22);
-  assert.equal(s.doc.querySelectorAll('.app-links a').length, 43);
+  assert.equal(s.visible().length, 23);
+  assert.equal(s.doc.querySelectorAll('.app-links a').length, 44);
   assert.ok(s.doc.querySelector('.app-controls').hidden);
 });
 test('filters are repeatable and match official Games classifications', () => {
   const s = setup();
   for (const group of ['games', 'apps', 'web', 'web', 'games', 'all', 'all']) {
     s.doc.querySelector(`[data-filter="${group}"]`).click();
-    assert.equal(s.visible().length, group === 'all' ? 22 : [...data.apps, ...data.webTools].filter(a => a.group === group).length);
+    assert.equal(s.visible().length, group === 'all' ? 23 : [...data.apps, ...data.webTools].filter(a => a.group === group).length);
     assert.equal(s.doc.querySelectorAll('.app-filter[aria-pressed="true"]').length, 1);
   }
 });
 test('search supports case, whitespace, word combinations and Thai/English names', () => {
   const s = setup();
-  for (const [term, count] of [['  MORSE  ', 1], ['golf putt', 1], ['ReadSlip', 1], ['อ่านสลิป', 1], ['Screenshot Studio', 1], ['screenshot maker', 1], ['   ', 22]]) {
+  for (const [term, count] of [['  MORSE  ', 1], ['golf putt', 1], ['ReadSlip', 1], ['อ่านสลิป', 1], ['Screenshot Studio', 1], ['screenshot maker', 1], ['   ', 23]]) {
     search(s, term);
     assert.equal(s.visible().length, count, term);
   }
@@ -44,10 +44,10 @@ test('search and filter combine; empty state resets everything and returns focus
   s.doc.querySelector('[data-filter="games"]').click();
   search(s, 'BuddhaBits');
   assert.equal(s.visible().length, 0);
-  assert.equal(s.doc.querySelector('#app-count').textContent, '0 of 22 projects');
+  assert.equal(s.doc.querySelector('#app-count').textContent, '0 of 23 projects');
   assert.ok(!s.doc.querySelector('.app-empty').hidden);
   s.doc.querySelector('.app-clear').click();
-  assert.equal(s.visible().length, 22);
+  assert.equal(s.visible().length, 23);
   assert.equal(s.search.value, '');
   assert.equal(s.doc.activeElement, s.search);
   assert.ok(s.doc.querySelector('.app-empty').hidden);
@@ -82,14 +82,14 @@ test('Screenshot Studio is a web tool with its own link, filter and correct coun
   assert.equal(links[0].getAttribute('aria-label'), 'Open Screenshot Studio web tool');
   assert.match(links[0].textContent, /Open web tool/);
   assert.match(article.querySelector('.app-meta').textContent, /Free web tool/);
-  assert.equal(s.doc.querySelector('#app-count').textContent, '21 App Store apps · 1 web tool');
+  assert.equal(s.doc.querySelector('#app-count').textContent, '21 App Store apps · 2 websites & tools');
   s.doc.querySelector('[data-filter="web"]').click();
-  assert.equal(s.visible().length, 1);
-  assert.equal(s.doc.querySelector('#app-count').textContent, '1 of 22 projects');
+  assert.equal(s.visible().length, 2);
+  assert.equal(s.doc.querySelector('#app-count').textContent, '2 of 23 projects');
   search(s, 'morse');
   assert.equal(s.visible().length, 0);
   s.doc.querySelector('.app-clear').click();
-  assert.equal(s.visible().length, 22);
+  assert.equal(s.visible().length, 23);
   search(s, 'screenshot');
   assert.equal(s.visible().length, 1);
   assert.equal(s.visible()[0].dataset.group, 'web');
