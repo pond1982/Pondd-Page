@@ -283,13 +283,13 @@
     {
       "id": "creator-dashboard-desktop",
       "name": "Argus Pip",
-      "websiteUrl": "https://github.com/pond1982/creator-dashboard-desktop",
+      "websiteUrl": "https://pond1982.github.io/creator-dashboard-desktop/",
       "genre": "Desktop tool · Creator analytics",
       "group": "web",
       "summary": "A local Mac and Windows dashboard for YouTube Studio, App Store Connect sales and PDF reports.",
       "aliases": "Creator Dashboard desktop analytics creator youtube apple sales",
       "icon": "assets/app-icons/creator-dashboard.png",
-      "linkLabel": "Project & downloads"
+      "linkLabel": "Website & downloads"
     },
     {
       "id": "bangkok-sky-zero",
