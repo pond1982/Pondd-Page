@@ -279,6 +279,28 @@
       "icon": "assets/app-icons/pet-28-days.png",
       "iconSource": "https://pond1982.github.io/pet-28-days/favicon.png",
       "linkLabel": "Open website"
+    },
+    {
+      "id": "creator-dashboard-desktop",
+      "name": "Creator Dashboard",
+      "websiteUrl": "https://github.com/pond1982/creator-dashboard-desktop",
+      "genre": "Desktop tool · Creator analytics",
+      "group": "web",
+      "summary": "A local Mac and Windows dashboard for YouTube Studio, App Store Connect sales and PDF reports.",
+      "aliases": "Argus Pip desktop analytics creator youtube apple sales",
+      "icon": "assets/app-icons/creator-dashboard.png",
+      "linkLabel": "Project & downloads"
+    },
+    {
+      "id": "bangkok-sky-zero",
+      "name": "Bangkok Sky Zero",
+      "websiteUrl": "https://pond1982.github.io/bangkok-sky-zero/",
+      "genre": "Browser game · Flight",
+      "group": "web",
+      "summary": "Fly a Mitsubishi A6M Zero over pixel-art Bangkok. Explore the Chao Phraya or launch a dogfight.",
+      "aliases": "Bangkok flight airplane zero browser game",
+      "icon": "assets/app-icons/bangkok-sky-zero.png",
+      "linkLabel": "Play in browser"
     }
   ]
 }
