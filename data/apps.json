@@ -282,12 +282,12 @@
     },
     {
       "id": "creator-dashboard-desktop",
-      "name": "Creator Dashboard",
+      "name": "Argus Pip",
       "websiteUrl": "https://github.com/pond1982/creator-dashboard-desktop",
       "genre": "Desktop tool · Creator analytics",
       "group": "web",
       "summary": "A local Mac and Windows dashboard for YouTube Studio, App Store Connect sales and PDF reports.",
-      "aliases": "Argus Pip desktop analytics creator youtube apple sales",
+      "aliases": "Creator Dashboard desktop analytics creator youtube apple sales",
       "icon": "assets/app-icons/creator-dashboard.png",
       "linkLabel": "Project & downloads"
     },
