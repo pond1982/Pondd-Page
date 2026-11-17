@@ -301,6 +301,17 @@
       "aliases": "Bangkok flight airplane zero browser game",
       "icon": "assets/app-icons/bangkok-sky-zero.png",
       "linkLabel": "Play in browser"
+    },
+    {
+      "id": "cutcutcut",
+      "name": "Cut Cut Cut",
+      "websiteUrl": "https://pond1982.github.io/cutcutcut/index.html",
+      "genre": "Game in development · Dev log",
+      "group": "web",
+      "summary": "An isometric sword game for iPhone. Climb 100 floors of zombies and follow its development.",
+      "aliases": "samurai firefight zombies sword cut cut cut devlog",
+      "icon": "assets/app-icons/cutcutcut.png",
+      "linkLabel": "Explore the game"
     }
   ]
 }
